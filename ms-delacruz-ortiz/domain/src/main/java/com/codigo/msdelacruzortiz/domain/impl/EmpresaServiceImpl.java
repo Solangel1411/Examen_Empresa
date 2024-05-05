@@ -28,7 +28,7 @@ public class EmpresaServiceImpl implements EmpresaServiceIn {
     }
 
     @Override
-    public List<EmpresaDTO> findAllOut() {
+    public List<EmpresaDTO> findAllIn() {
         return empresaServiceOut.findAllOut();
     }
 

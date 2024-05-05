@@ -18,7 +18,7 @@ public class EmpresaController {
 
         private final EmpresaServiceIn empresaServiceIn;
 
-        @PostMapping
+        @PostMapping("/save")
         public ResponseEntity<EmpresaDTO> createPersonaIn(@RequestBody EmpresaRequest empresaRequest){
             return ResponseEntity
                     .status(HttpStatus.CREATED)

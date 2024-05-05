@@ -9,6 +9,7 @@ import com.codigo.msdelacruzortiz.domain.port.out.EmpresaServiceOut;
 import com.codigo.msdelacruzortiz.infraestructure.client.ClienteEmpresaSunat;
 import com.codigo.msdelacruzortiz.infraestructure.dao.EmpresaRepository;
 import com.codigo.msdelacruzortiz.infraestructure.entity.EmpresaEntity;
+import com.codigo.msdelacruzortiz.infraestructure.mapper.EmpresaMapper;
 import com.codigo.msdelacruzortiz.infraestructure.redis.RedisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,17 +28,23 @@ public class EmpresaAdapter implements EmpresaServiceOut {
     private final ClienteEmpresaSunat clienteSunat;
     private final RedisService redisService;
 
-    @Value("${token.sunat}")
+    @Value("${token.api}")
     private String tokenSunat;
 
     private EmpresaEntity getEntity(EmpresaRequest empresaRequest, boolean actualiza, Long id) {
         // Ejecutar servicio de la SUNAT
-        SunatEmpresaDTO empresaDTO = getDatosSunat(String.valueOf(empresaRequest.getNumDoc()));
+        SunatEmpresaDTO empresaDTO = getDatosSunat(empresaRequest.getNumDoc());
 
         EmpresaEntity entity = new EmpresaEntity();
-        entity.setNumeroDocumento(empresaDTO.getNumDoc());
+        entity.setNumeroDocumento(empresaDTO.getNumeroDocumento());
         entity.setRazonSocial(empresaDTO.getRazonSocial());
+        entity.setTipoDocumento(empresaDTO.getTipoDocumento());
         entity.setEstado(Constant.STATUS_ACTIVE);
+        entity.setCondicion(empresaDTO.getCondicion());
+        entity.setDireccion(empresaDTO.getDireccion());
+        entity.setProvincia(empresaDTO.getProvincia());
+        entity.setDistrito(empresaDTO.getDistrito());
+        entity.setEsAgenteRetencion(empresaDTO.isEsAgenteRetencion());
 
         // Datos de auditoria
         if (actualiza) {
@@ -54,8 +61,6 @@ public class EmpresaAdapter implements EmpresaServiceOut {
 
     private SunatEmpresaDTO getDatosSunat(String numeroRuc) {
         String authorization = "Bearer " + tokenSunat;
-        // Aquí debes llamar al cliente Feign para obtener los datos de la SUNAT
-        // y mapear la respuesta a un objeto EmpresaDTO
         return clienteSunat.getInfoSunat(numeroRuc, authorization);
     }
 
@@ -66,7 +71,10 @@ public class EmpresaAdapter implements EmpresaServiceOut {
 
     @Override
     public EmpresaDTO createEmpresaOut(EmpresaRequest empresaRequest) {
-        return null; // Implementa la lógica para crear una empresa
+        EmpresaEntity empresaEntity = getEntity(empresaRequest, false, null);
+        empresaRepository.save(empresaEntity);
+        EmpresaEntity empresaEntitySaved = empresaRepository.save(empresaEntity);
+        return EmpresaMapper.fromEntity(empresaEntitySaved);
     }
 
     @Override

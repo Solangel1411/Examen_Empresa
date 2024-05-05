@@ -8,9 +8,9 @@ import lombok.Setter;
 
 public class SunatEmpresaDTO {
     private String razonSocial;
-    private String tipoDoc;
-    private String numDoc;
-    private int estado;
+    private String tipoDocumento;
+    private String numeroDocumento;
+    private String estado;
     private String condicion;
     private String direccion;
     private String ubigeo;

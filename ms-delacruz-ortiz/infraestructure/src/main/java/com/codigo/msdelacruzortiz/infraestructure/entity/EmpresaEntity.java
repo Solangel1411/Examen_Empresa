@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 public class EmpresaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "empresa_id")
     private Long id;
 
     @Column(name = "razon_social", nullable = false, length = 255)

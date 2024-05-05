@@ -8,5 +8,5 @@ import lombok.Setter;
 
 public class EmpresaRequest {
     private String tipoDoc;
-    private Long numDoc;
+    private String numDoc;
 }

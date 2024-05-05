@@ -2,13 +2,15 @@ package com.codigo.msdelacruzortiz.infraestructure.adapters;
 
 import com.codigo.msdelacruzortiz.domain.aggregates.constants.Constant;
 import com.codigo.msdelacruzortiz.domain.aggregates.dto.PersonaDTO;
-import com.codigo.msdelacruzortiz.domain.aggregates.dto.SunatEmpresaDTO;
-import com.codigo.msdelacruzortiz.domain.aggregates.dto.SunatPersonaDTO;
+import com.codigo.msdelacruzortiz.domain.aggregates.dto.ReniecPersonaDTO;
 import com.codigo.msdelacruzortiz.domain.aggregates.request.PersonaRequest;
 import com.codigo.msdelacruzortiz.domain.port.out.PersonaServiceOut;
-import com.codigo.msdelacruzortiz.infraestructure.client.ClientePersonaSunat;
+import com.codigo.msdelacruzortiz.infraestructure.client.ClientePersonaReniec;
+import com.codigo.msdelacruzortiz.infraestructure.dao.EmpresaRepository;
 import com.codigo.msdelacruzortiz.infraestructure.dao.PersonaRepository;
+import com.codigo.msdelacruzortiz.infraestructure.entity.EmpresaEntity;
 import com.codigo.msdelacruzortiz.infraestructure.entity.PersonaEntity;
+import com.codigo.msdelacruzortiz.infraestructure.mapper.PersonaMapper;
 import com.codigo.msdelacruzortiz.infraestructure.redis.RedisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,37 +25,43 @@ import java.util.Optional;
 public class PersonaAdapter implements PersonaServiceOut {
 
     private final PersonaRepository personaRepository;
-    private final ClientePersonaSunat clientePersonaSunat;
+    private final ClientePersonaReniec clientePersonaReniec;
     private final RedisService redisService;
-    @Value("${token.reniec}")
+    private final EmpresaRepository empresaRepository;
+
+    @Value("${token.api}")
     private String tokenReniec;
 
     private PersonaEntity getEntity(PersonaRequest personaRequest, boolean actualiza, Long id) {
-        SunatEmpresaDTO sunatPersonaDTO = getExecReniec(String.valueOf(personaRequest.getNumDoc()));
+        ReniecPersonaDTO reniecPersonaDTO = getExecReniec(personaRequest.getNumDoc());
         PersonaEntity entity = new PersonaEntity();
-        entity.setNumeroDoc(sunatPersonaDTO.getNumeroDocumento());
-        entity.setNombre(sunatPersonaDTO.getNombres());
-        entity.setApeMat(sunatPersonaDTO.getApellidoPaterno());
-        entity.setApePat(sunatPersonaDTO.getApellidoMaterno());
-        entity.setEstado(Constant.STATUS_ACTIVE);
+        entity.setNombre(reniecPersonaDTO.getNombres());
+        entity.setNumeroDoc(reniecPersonaDTO.getNumeroDocumento());
+        entity.setApeMat(reniecPersonaDTO.getApellidoMaterno());
+        entity.setApePat(reniecPersonaDTO.getApellidoPaterno());
+        entity.setTipoDoc(reniecPersonaDTO.getTipoDocumento());
 
-        // Datos de auditoria donde corresponda
+        Optional<EmpresaEntity> empresaEntity = empresaRepository.findByNumeroDocumento(personaRequest.getEmpresa());
 
-        if (actualiza) {
-            entity.setId(id);
-            entity.setUsuaModif(Constant.USU_ADMIN);
-            entity.setDateModif(getTimestamp());
-        } else {
-            entity.setUsuaCrea(Constant.USU_ADMIN);
-            entity.setDateCreate(getTimestamp());
+        if (empresaEntity.isPresent()) {
+            EmpresaEntity empresa = empresaEntity.get();
+            entity.setEmpresa(empresa);
+
+            if (actualiza) {
+                entity.setId(id);
+                entity.setDateCreate(getTimestamp());
+                entity.setUsuaCrea(Constant.USU_ADMIN);
+            } else {
+                entity.setDateCreate(getTimestamp());
+                entity.setUsuaCrea(Constant.USU_ADMIN);
+            }
         }
-
         return entity;
     }
 
-    private SunatEmpresaDTO getExecReniec(String numDoc) {
+    private ReniecPersonaDTO getExecReniec(String numDoc) {
         String authorization = "Bearer " + tokenReniec;
-        return clientePersonaSunat.getInfoReniec(numDoc, authorization);
+        return clientePersonaReniec.getInfoReniec(numDoc, authorization);
     }
 
     private Timestamp getTimestamp() {
@@ -63,20 +71,31 @@ public class PersonaAdapter implements PersonaServiceOut {
 
     @Override
     public PersonaDTO createPersonaOut(PersonaRequest personaRequest) {
-        // Validate and sanitize user input data
-        // Implement create logic
-        return null;
+        PersonaEntity personaEntity = getEntity(personaRequest, false, null);
+        if(personaEntity.getEmpresa() != null)
+        {
+            PersonaEntity personaSaved = personaRepository.save(personaEntity);
+            return PersonaMapper.fromEntity(personaSaved);
+        }
+        else {
+            return null;
+        }
     }
 
     @Override
     public Optional<PersonaDTO> findByIdOut(Long id) {
-        // Implement find by id logic
+       Optional<PersonaEntity> personaOptional = personaRepository.findById(id);
+       if (personaOptional.isPresent()) {
+           PersonaEntity personaEntity = personaOptional.get();
+           PersonaDTO personaDTO = PersonaMapper.fromEntity(personaEntity);
+           return Optional.of(personaDTO);
+       }
         return Optional.empty();
     }
 
     @Override
     public List<PersonaDTO> findAllOut() {
-        // Implement find all logic
+
         return List.of();
     }
 

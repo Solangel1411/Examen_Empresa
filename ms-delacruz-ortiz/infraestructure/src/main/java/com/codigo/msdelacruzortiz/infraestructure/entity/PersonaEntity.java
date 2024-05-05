@@ -63,9 +63,6 @@ public class PersonaEntity {
     @Column(name = "dateDelete")
     private Timestamp dateDelete;
 
-    @Column(name = "empresa_id", nullable = false)
-    private Long empresaId;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "empresa_id",nullable = false)
     private EmpresaEntity empresa;

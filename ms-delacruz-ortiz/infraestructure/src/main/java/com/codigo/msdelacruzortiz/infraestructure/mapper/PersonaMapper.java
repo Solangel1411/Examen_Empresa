@@ -12,7 +12,7 @@ public class PersonaMapper {
 
         dto.setId(entity.getId());
         dto.setNombre(entity.getNombre());
-        dto.setApellido(entity.getApellido());
+        dto.setApellido(entity.getApeMat());
         dto.setTipoDoc(entity.getTipoDoc());
         dto.setNumDoc(entity.getNumeroDoc());
         dto.setEmail(entity.getEmail());

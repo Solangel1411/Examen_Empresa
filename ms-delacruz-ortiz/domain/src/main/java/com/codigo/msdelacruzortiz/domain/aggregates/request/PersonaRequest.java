@@ -8,6 +8,6 @@ import lombok.Setter;
 
 public class PersonaRequest {
     private String tipoDoc;
-    private Long numDoc;
+    private String numDoc;
     private String empresa;
 }
