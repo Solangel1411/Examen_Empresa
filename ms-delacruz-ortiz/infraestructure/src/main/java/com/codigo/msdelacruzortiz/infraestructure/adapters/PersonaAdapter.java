@@ -12,6 +12,7 @@ import com.codigo.msdelacruzortiz.infraestructure.entity.EmpresaEntity;
 import com.codigo.msdelacruzortiz.infraestructure.entity.PersonaEntity;
 import com.codigo.msdelacruzortiz.infraestructure.mapper.PersonaMapper;
 import com.codigo.msdelacruzortiz.infraestructure.redis.RedisService;
+import com.codigo.msdelacruzortiz.infraestructure.util.PersonaUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -41,6 +43,7 @@ public class PersonaAdapter implements PersonaServiceOut {
         entity.setApeMat(reniecPersonaDTO.getApellidoMaterno());
         entity.setApePat(reniecPersonaDTO.getApellidoPaterno());
         entity.setTipoDoc(reniecPersonaDTO.getTipoDocumento());
+        entity.setEstado(1);
 
         Optional<EmpresaEntity> empresaEntity = empresaRepository.findByNumeroDocumento(personaRequest.getEmpresa());
 
@@ -85,13 +88,27 @@ public class PersonaAdapter implements PersonaServiceOut {
 
     @Override
     public Optional<PersonaDTO> findByIdOut(Long id) {
-       Optional<PersonaEntity> personaOptional = personaRepository.findById(id);
-       if (personaOptional.isPresent()) {
-           PersonaEntity personaEntity = personaOptional.get();
-           PersonaDTO personaDTO = PersonaMapper.fromEntity(personaEntity);
-           return Optional.of(personaDTO);
-       }
-        return Optional.empty();
+        // consultar redis
+        String redisCache = redisService.getFromRedis(Objects.toString(id));
+        if (redisCache == null)
+        {
+            Optional<PersonaEntity> personaOptional = personaRepository.findById(id);
+            if(personaOptional.isPresent())
+            {
+                PersonaEntity persona = personaOptional.get();
+                PersonaDTO personaDTO = PersonaMapper.fromEntity(persona);
+                String jsonPersona = PersonaUtil.convertirAString(personaDTO);
+                redisService.saveInRedis(Objects.toString(id), jsonPersona, 10);
+                return Optional.of(personaDTO);
+            }
+            else {
+                return Optional.empty();
+            }
+        }
+        else {
+            PersonaDTO personaDTO = PersonaUtil.convertirDesdeString(redisCache, PersonaDTO.class);
+            return Optional.of(personaDTO);
+        }
     }
 
     @Override

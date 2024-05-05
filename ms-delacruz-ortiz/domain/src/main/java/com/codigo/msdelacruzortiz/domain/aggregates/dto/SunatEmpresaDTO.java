@@ -18,7 +18,7 @@ public class SunatEmpresaDTO {
     private String viaNombre;
     private String zonaCodigo;
     private String zonaTipo;
-    private int numero;
+    private String numero;
     private String interior;
     private String lote;
     private String dpto;

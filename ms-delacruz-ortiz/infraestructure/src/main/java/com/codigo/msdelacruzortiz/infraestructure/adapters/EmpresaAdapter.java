@@ -11,6 +11,7 @@ import com.codigo.msdelacruzortiz.infraestructure.dao.EmpresaRepository;
 import com.codigo.msdelacruzortiz.infraestructure.entity.EmpresaEntity;
 import com.codigo.msdelacruzortiz.infraestructure.mapper.EmpresaMapper;
 import com.codigo.msdelacruzortiz.infraestructure.redis.RedisService;
+import com.codigo.msdelacruzortiz.infraestructure.util.EmpresaUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -19,10 +20,10 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 
 public class EmpresaAdapter implements EmpresaServiceOut {
 
@@ -34,6 +35,12 @@ public class EmpresaAdapter implements EmpresaServiceOut {
     @Value("${token.api}")
     private String tokenSunat;
 
+    public EmpresaAdapter(EmpresaRepository empresaRepository, RedisService redisService, ClienteEmpresaSunat clienteSunat, ClienteEmpresaSunat clienteEmpresaSunat) {
+        this.empresaRepository = empresaRepository;
+        this.redisService = redisService;
+        this.clienteSunat = clienteSunat;
+        this.clienteEmpresaSunat = clienteEmpresaSunat;
+    }
 
     private EmpresaEntity getEntity(EmpresaRequest empresaRequest, boolean actualiza, Long id) {
         // Ejecutar servicio de la SUNAT
@@ -83,14 +90,26 @@ public class EmpresaAdapter implements EmpresaServiceOut {
 
     @Override
     public Optional<EmpresaDTO> findByIdOut(Long id) {
-        Optional<EmpresaEntity> empresaOptional = empresaRepository.findById(id);
-
-        if (empresaOptional.isPresent()) {
-            EmpresaEntity empresaEntity = empresaOptional.get();
-            EmpresaDTO empresaDTO = EmpresaMapper.fromEntity(empresaEntity);
+        // consultar redis
+        String redisCache = redisService.getFromRedis(Objects.toString(id));
+        if (redisCache == null)
+        {
+            Optional<EmpresaEntity> empresaOptional = empresaRepository.findById(id);
+            if(empresaOptional.isPresent())
+            {
+                EmpresaEntity empresa = empresaOptional.get();
+                EmpresaDTO empresaDTO = EmpresaMapper.fromEntity(empresa);
+                String jsonEmpresa = EmpresaUtil.convertirAString(empresaDTO);
+                redisService.saveInRedis(Objects.toString(id), jsonEmpresa, 10);
+                return Optional.of(empresaDTO);
+            }
+            else {
+                return Optional.empty();
+            }
+        }
+        else {
+            EmpresaDTO empresaDTO = EmpresaUtil.convertirDesdeString(redisCache, EmpresaDTO.class);
             return Optional.of(empresaDTO);
-        } else {
-            return Optional.empty();
         }
     }
 
