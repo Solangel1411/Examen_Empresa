@@ -3,7 +3,6 @@ package com.codigo.msdelacruzortiz.application.controllers;
 import com.codigo.msdelacruzortiz.domain.aggregates.dto.PersonaDTO;
 import com.codigo.msdelacruzortiz.domain.aggregates.request.PersonaRequest;
 import com.codigo.msdelacruzortiz.domain.port.in.PersonaServiceIn;
-import com.codigo.msdelacruzortiz.infraestructure.dao.PersonaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,3 +50,4 @@ public class PersonaController {
                 .body(personaServiceIn.deletePersonaIn(id));
     }
 }
+

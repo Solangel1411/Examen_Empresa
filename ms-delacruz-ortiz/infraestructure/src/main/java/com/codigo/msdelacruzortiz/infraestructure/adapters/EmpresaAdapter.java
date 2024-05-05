@@ -13,9 +13,11 @@ import com.codigo.msdelacruzortiz.infraestructure.mapper.EmpresaMapper;
 import com.codigo.msdelacruzortiz.infraestructure.redis.RedisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,12 +26,14 @@ import java.util.Optional;
 
 public class EmpresaAdapter implements EmpresaServiceOut {
 
-    private final EmpresaRepository empresaRepository;
-    private final ClienteEmpresaSunat clienteSunat;
-    private final RedisService redisService;
+    private EmpresaRepository empresaRepository;
+    private ClienteEmpresaSunat clienteSunat;
+    private RedisService redisService;
+    private ClienteEmpresaSunat clienteEmpresaSunat;
 
     @Value("${token.api}")
     private String tokenSunat;
+
 
     private EmpresaEntity getEntity(EmpresaRequest empresaRequest, boolean actualiza, Long id) {
         // Ejecutar servicio de la SUNAT
@@ -43,9 +47,9 @@ public class EmpresaAdapter implements EmpresaServiceOut {
         entity.setCondicion(empresaDTO.getCondicion());
         entity.setDireccion(empresaDTO.getDireccion());
         entity.setProvincia(empresaDTO.getProvincia());
-        entity.setDistrito(empresaDTO.getDistrito());
+        entity.setDireccion(empresaDTO.getDistrito());
+        entity.setDepartamento(empresaDTO.getDepartamento());
         entity.setEsAgenteRetencion(empresaDTO.isEsAgenteRetencion());
-
         // Datos de auditoria
         if (actualiza) {
             entity.setId(id);
@@ -61,7 +65,8 @@ public class EmpresaAdapter implements EmpresaServiceOut {
 
     private SunatEmpresaDTO getDatosSunat(String numeroRuc) {
         String authorization = "Bearer " + tokenSunat;
-        return clienteSunat.getInfoSunat(numeroRuc, authorization);
+        // Llama al metodo del cliente Feign para obtener los datos de la SUNAT
+        return clienteEmpresaSunat.getInfoSunat(numeroRuc, authorization);
     }
 
     private Timestamp getTimestamp() {
@@ -72,28 +77,60 @@ public class EmpresaAdapter implements EmpresaServiceOut {
     @Override
     public EmpresaDTO createEmpresaOut(EmpresaRequest empresaRequest) {
         EmpresaEntity empresaEntity = getEntity(empresaRequest, false, null);
-        empresaRepository.save(empresaEntity);
-        EmpresaEntity empresaEntitySaved = empresaRepository.save(empresaEntity);
-        return EmpresaMapper.fromEntity(empresaEntitySaved);
+        EmpresaEntity empresaSaved = empresaRepository.save(empresaEntity);
+        return EmpresaMapper.fromEntity(empresaSaved);
     }
 
     @Override
     public Optional<EmpresaDTO> findByIdOut(Long id) {
-        return Optional.empty(); // Implementa la lógica para buscar una empresa por ID
+        Optional<EmpresaEntity> empresaOptional = empresaRepository.findById(id);
+
+        if (empresaOptional.isPresent()) {
+            EmpresaEntity empresaEntity = empresaOptional.get();
+            EmpresaDTO empresaDTO = EmpresaMapper.fromEntity(empresaEntity);
+            return Optional.of(empresaDTO);
+        } else {
+            return Optional.empty();
+        }
     }
 
     @Override
     public List<EmpresaDTO> findAllOut() {
-        return List.of(); // Implementa la lógica para obtener todas las empresas
+        // Obtener todas las empresas de la base de datos
+        List<EmpresaEntity> empresaEntities = empresaRepository.findAll();
+
+        List<EmpresaDTO> empresaDTOs = new ArrayList<>();
+        for (EmpresaEntity empresaEntity : empresaEntities) {
+            EmpresaDTO empresaDTO = EmpresaMapper.fromEntity(empresaEntity);
+            empresaDTOs.add(empresaDTO);
+        }
+        return empresaDTOs;
     }
 
     @Override
     public EmpresaDTO updateEmpresaOut(Long id, EmpresaRequest empresaRequest) {
-        return null; // Implementa la lógica para actualizar una empresa
+        Optional<EmpresaEntity> empresa = empresaRepository.findById(id);
+        if(empresa.isPresent()){
+            EmpresaEntity personaEntity = getEntity(empresaRequest,true, id);
+            return EmpresaMapper.fromEntity(empresaRepository.save(personaEntity));
+        }else {
+            throw new RuntimeException();
+        }
     }
 
     @Override
     public EmpresaDTO deleteEmpresaOut(Long id) {
-        return null; // Implementa la lógica para eliminar una empresa
-    }
-}
+        Optional<EmpresaEntity> empresa = empresaRepository.findById(id);
+
+        if (empresa.isPresent()) {
+            EmpresaEntity empresaDesactivada = empresa.get();
+
+            empresaDesactivada.setEstado(0);
+            empresa.get().setUsuaDelet(Constant.USU_ADMIN);
+            empresa.get().setDateDelet(getTimestamp());
+
+            return EmpresaMapper.fromEntity(empresaRepository.save(empresa.get()));
+        } else {
+            throw new RuntimeException();
+        }
+    }}

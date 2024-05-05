@@ -2,6 +2,9 @@ package com.codigo.msdelacruzortiz.infraestructure.mapper;
 
 import com.codigo.msdelacruzortiz.domain.aggregates.dto.EmpresaDTO;
 import com.codigo.msdelacruzortiz.infraestructure.entity.EmpresaEntity;
+import org.springframework.stereotype.Service;
+
+@Service
 
 public class EmpresaMapper {
     public static EmpresaDTO fromEntity(EmpresaEntity entity) {

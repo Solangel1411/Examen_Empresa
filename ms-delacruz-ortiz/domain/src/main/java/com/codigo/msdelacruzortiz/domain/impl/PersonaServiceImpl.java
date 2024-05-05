@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public class PersonaServiceImpl implements PersonaServiceIn {
 
-  private final PersonaServiceOut personaServiceOut;
+    private final PersonaServiceOut personaServiceOut;
 
     @Override
     public PersonaDTO createPersonaIn(PersonaRequest personaRequest) {

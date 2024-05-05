@@ -16,39 +16,39 @@ import java.util.List;
 
 public class EmpresaController {
 
-        private final EmpresaServiceIn empresaServiceIn;
+    private final EmpresaServiceIn empresaServiceIn;
 
-        @PostMapping("/save")
-        public ResponseEntity<EmpresaDTO> createPersonaIn(@RequestBody EmpresaRequest empresaRequest){
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body(empresaServiceIn.createEmpresaIn(empresaRequest));
-        }
-        @GetMapping("/{id}")
-        public ResponseEntity<EmpresaDTO> findByIdIn(@PathVariable Long id){
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body(empresaServiceIn.findByIdIn(id).get());
-        }
-
-        @GetMapping("/todos")
-        public ResponseEntity<List<EmpresaDTO>> findAllIn(){
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body(empresaServiceIn.findAllIn());
-        }
-        @PutMapping("/{id}")
-        public ResponseEntity<EmpresaDTO> updateEmpresaIn(@PathVariable Long id, @RequestBody EmpresaRequest empresaRequest){
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body(empresaServiceIn.updateEmpresaIn(id,empresaRequest));
-        }
-
-        @DeleteMapping("/{id}")
-        public ResponseEntity<EmpresaDTO> deleteEmpresaIn(@PathVariable Long id){
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body(empresaServiceIn.deleteEmpresaIn(id));
-        }
+    @PostMapping("/save")
+    public ResponseEntity<EmpresaDTO> createPersonaIn(@RequestBody EmpresaRequest empresaRequest){
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(empresaServiceIn.createEmpresaIn(empresaRequest));
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<EmpresaDTO> findByIdIn(@PathVariable Long id){
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(empresaServiceIn.findByIdIn(id).get());
+    }
+
+    @GetMapping("/todos")
+    public ResponseEntity<List<EmpresaDTO>> findAllIn(){
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(empresaServiceIn.findAllIn());
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<EmpresaDTO> updateEmpresaIn(@PathVariable Long id, @RequestBody EmpresaRequest empresaRequest){
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(empresaServiceIn.updateEmpresaIn(id,empresaRequest));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<EmpresaDTO> deleteEmpresaIn(@PathVariable Long id){
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(empresaServiceIn.deleteEmpresaIn(id));
+    }
+}
 

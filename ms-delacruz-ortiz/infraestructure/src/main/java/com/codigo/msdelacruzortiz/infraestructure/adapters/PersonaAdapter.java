@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -95,20 +96,36 @@ public class PersonaAdapter implements PersonaServiceOut {
 
     @Override
     public List<PersonaDTO> findAllOut() {
-
-        return List.of();
+        List<PersonaDTO> listaDto = new ArrayList<>();
+        List<PersonaEntity> entidades = personaRepository.findAll();
+        for (PersonaEntity dato :entidades){
+            listaDto.add(PersonaMapper.fromEntity(dato));
+        }
+        return listaDto;
     }
 
     @Override
     public PersonaDTO updatePersonaOut(Long id, PersonaRequest personaRequest) {
-        // Validate and sanitize user input data
-        // Implement update logic
-        return null;
+
+        Optional<PersonaEntity> empresa = personaRepository.findById(id);
+        if(empresa.isPresent()){
+            PersonaEntity personaEntity = getEntity(personaRequest,true, id);
+            return PersonaMapper.fromEntity(personaRepository.save(personaEntity));
+        }else {
+            throw new RuntimeException();
+        }
     }
 
     @Override
     public PersonaDTO deletePersonaOut(Long id) {
-        // Implement delete logic
-        return null;
+        Optional<PersonaEntity> empresa = personaRepository.findById(id);
+        if(empresa.isPresent()){
+            empresa.get().setEstado(0);
+            empresa.get().setUsuaDelete(Constant.USU_ADMIN);
+            empresa.get().setDateDelete(getTimestamp());
+            return PersonaMapper.fromEntity(personaRepository.save(empresa.get()));
+        }else {
+            throw new RuntimeException();
+        }
     }
 }
