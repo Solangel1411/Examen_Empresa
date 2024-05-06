@@ -5,96 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e69d3799-bc42-448a-bba5-eeffd05866f1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ms-delacruz-ortiz.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/application/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/application/src/main/java/com/codigo/msdelacruzortiz/application/Launcher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/application/src/main/java/com/codigo/msdelacruzortiz/application/controllers/EmpresaController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/application/src/main/java/com/codigo/msdelacruzortiz/application/controllers/PersonaController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/application/src/main/resources/META-INF/maven/archetype.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/application/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/application/src/main/resources/archetype-resources/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/application/src/main/resources/archetype-resources/src/main/java/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/application/src/main/resources/archetype-resources/src/test/java/AppTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/java/com/codigo/msdelacruzortiz/domain/aggregates/constants/Constant.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/java/com/codigo/msdelacruzortiz/domain/aggregates/dto/EmpresaDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/java/com/codigo/msdelacruzortiz/domain/aggregates/dto/PersonaDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/java/com/codigo/msdelacruzortiz/domain/aggregates/dto/ReniecPersonaDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/java/com/codigo/msdelacruzortiz/domain/aggregates/dto/SunatEmpresaDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/java/com/codigo/msdelacruzortiz/domain/aggregates/request/EmpresaRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/java/com/codigo/msdelacruzortiz/domain/aggregates/request/PersonaRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/java/com/codigo/msdelacruzortiz/domain/impl/EmpresaServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/java/com/codigo/msdelacruzortiz/domain/impl/PersonaServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/java/com/codigo/msdelacruzortiz/domain/port/in/EmpresaServiceIn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/java/com/codigo/msdelacruzortiz/domain/port/in/PersonaServiceIn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/java/com/codigo/msdelacruzortiz/domain/port/out/EmpresaServiceOut.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/java/com/codigo/msdelacruzortiz/domain/port/out/PersonaServiceOut.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/resources/META-INF/maven/archetype.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/resources/archetype-resources/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/resources/archetype-resources/src/main/java/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/domain/src/main/resources/archetype-resources/src/test/java/AppTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/adapters/EmpresaAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/adapters/PersonaAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/client/ClienteEmpresaSunat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/client/ClientePersonaReniec.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/dao/EmpresaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/dao/PersonaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/entity/EmpresaEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/entity/PersonaEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/mapper/EmpresaMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/mapper/PersonaMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/redis/RedisService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/util/EmpresaUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/util/PersonaUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/resources/META-INF/maven/archetype.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/resources/archetype-resources/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/resources/archetype-resources/src/main/java/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/infraestructure/src/main/resources/archetype-resources/src/test/java/AppTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-delacruz-ortiz/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/application/src/main/java/com/codigo/msdelacruzortiz/application/Launcher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/application/src/main/java/com/codigo/msdelacruzortiz/application/controllers/EmpresaController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/application/src/main/java/com/codigo/msdelacruzortiz/application/controllers/PersonaController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/domain/src/main/java/com/codigo/msdelacruzortiz/domain/aggregates/constants/Constant.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/domain/src/main/java/com/codigo/msdelacruzortiz/domain/aggregates/dto/EmpresaDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/domain/src/main/java/com/codigo/msdelacruzortiz/domain/aggregates/dto/PersonaDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/domain/src/main/java/com/codigo/msdelacruzortiz/domain/aggregates/dto/ReniecPersonaDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/domain/src/main/java/com/codigo/msdelacruzortiz/domain/aggregates/dto/SunatEmpresaDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/domain/src/main/java/com/codigo/msdelacruzortiz/domain/aggregates/request/EmpresaRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/domain/src/main/java/com/codigo/msdelacruzortiz/domain/aggregates/request/PersonaRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/domain/src/main/java/com/codigo/msdelacruzortiz/domain/impl/EmpresaServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/domain/src/main/java/com/codigo/msdelacruzortiz/domain/impl/PersonaServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/domain/src/main/java/com/codigo/msdelacruzortiz/domain/port/in/EmpresaServiceIn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/domain/src/main/java/com/codigo/msdelacruzortiz/domain/port/in/PersonaServiceIn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/domain/src/main/java/com/codigo/msdelacruzortiz/domain/port/out/EmpresaServiceOut.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/domain/src/main/java/com/codigo/msdelacruzortiz/domain/port/out/PersonaServiceOut.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/adapters/EmpresaAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/adapters/PersonaAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/client/ClienteEmpresaSunat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/client/ClientePersonaReniec.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/dao/EmpresaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/dao/PersonaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/entity/EmpresaEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/entity/PersonaEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/mapper/EmpresaMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/mapper/PersonaMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/redis/RedisService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/util/EmpresaUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ms-solangel_tisza/infraestructure/src/main/java/com/codigo/msdelacruzortiz/infraestructure/util/PersonaUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,23 +18,23 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2g4nNuMRFmH4UG4hDD2epSGGpxA" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/SHARON/Downloads/solangel_tisza/solangel_tisza"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/SHARON/Downloads/solangel_tisza/solangel_tisza&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
